@@ -1,14 +1,31 @@
-import './App.css'
-import Navbar from './components/shared/navbar.jsx'
+import { createBrowserRouter } from 'react-router-dom';
+import Navbar from './components/shared/navbar.jsx';
+import Login from './components/auth/Login.jsx';
+import Signup from './components/auth/Signup.jsx';
+import Home from './components/Home.jsx';
+import { RouterProvider } from 'react-router-dom';
+
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+]);
 
 function App() {
-
   return (
-    <>
-      {/* <><h1 className='text-red-500'>Lets Build JobHunt-JobPortal</h1> */}
-      <Navbar/>
-     </>
-  )
+    <div>
+      <RouterProvider router={appRouter} />
+    </div>
+  );
 }
 
-export default App
+export default App;
