@@ -17,24 +17,26 @@ import { LogOut, User2, House, ScanText, Layers2, FolderSearch,NotebookPen  } fr
 const Navbar = () => {
   const user = false;
   return (
-    <div className='bg-gradient-to-r from-white to-blue-500 h-10'>
-      <div className='flex item-center justify-between mx-auto max-w-7xl h-12'>
+    // <div className='bg-gradient-to-r from-white to-blue-500 h-10'>
+    <div className='bg-white-200'>
+
+      <div className='flex item-center justify-between mx-auto max-w-6xl'>
         <div>
-          <h1 className='text-2xl font-bold ' >Job<span className='text-[#0000FF] '>Hunt</span></h1>
+          <h1 className='text-2xl font-bold' ><u className='text-white bg-[#6A38C2] rounded-sm'>Job</u><span className='text-[#6A38C2] rounded-medium '>Hunt</span></h1>
         </div>
 
-        <div className='flex item-center gap-12'>
+        <div className='flex item-center gap-12 h-18'>
           <ul className='flex font-medium items-center gap-5'>
 
-            <div className='flex gap-1 text-[#FFFFFF]'>
+            <div className='flex gap-1 text-[#000000]'>
               <House />
               <li>Home</li>
             </div>
-            <div className='flex gap-1 text-[#FFFFFF]'>
+            <div className='flex gap-1 text-[#000000]'>
             <NotebookPen />
               <li>Jobs</li>
             </div>
-            <div className='flex gap-1 text-[#FFFFFF]'>
+            <div className='flex gap-1 text-[#000000]'>
               <FolderSearch />
               <li>Browse</li>
             </div>
