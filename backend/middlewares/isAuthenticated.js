@@ -6,7 +6,12 @@ const isAuthenticated = async (req, res, next) => {
         if (!token) {
             console.log("***Middleware hitted***");
             return res.status(401).json({
-                message: "User not authenticated , ***Middleware hitted***",
+                message: "User not authenticated ",
+                middleware_message: "***Middleware hitted***",
+                server_message: "***Server is Live......***",
+                
+
+                
                 success: false,
             })
         }
