@@ -11,10 +11,6 @@
        "src": "/(.*)",
        "dest": "/index.js"
      }
-   ],
-   "env": {
-     "MONGO_URI": "mongodb+srv://anisinbox10:9JUN3OTz8ZO8dEdC@cluster0.gumou.mongodb.net/",
-     "PORT": "3000"
-   }
- }
+   ]
+}
  
