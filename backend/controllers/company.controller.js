@@ -34,6 +34,8 @@ export const registerCompany = async (req, res) => {
 }
 export const getCompany = async (req, res) => {
     try {
+            console.log("***Get Company Controller Hitted***" , getCompany);
+
         const userId = req.id; // logged in user id
         const companies = await Company.find({ userId });
         if (!companies) {
