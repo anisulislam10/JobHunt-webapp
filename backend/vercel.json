@@ -12,11 +12,9 @@
        "dest": "/index.js"
      }
    ],
-   "functions": {
-     "index.js": {
-       "maxDuration": 10,
-       "memory": 1024
-     }
+   "env": {
+     "MONGO_URI": "@mongo_uri",
+     "PORT": "3000"
    }
  }
  
