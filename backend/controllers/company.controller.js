@@ -36,11 +36,6 @@ export const getCompany = async (req, res) => {
                 console.log("***Get Company Controller Hitted***" , getCompany);
 
     try {
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 0ce033590fdd8835a0b5eb258009982de31f54a3
         const userId = req.id; // logged in user id
         const companies = await Company.find({ userId });
         if (!companies) {
