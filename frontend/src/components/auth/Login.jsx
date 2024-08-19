@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '@/redux/authSlice'
 import store from '../../redux/store'
 import { Loader2 } from 'lucide-react'
+import {setUser} from './../../redux/authSlice'
 
 
 // import { Fullscreen, LogIn } from 'lucide-react'
@@ -42,6 +43,7 @@ function Login() {
         withCredentials: true
       });
       if (res.data.success) {
+        dispatch(setUser(res.data.user)) //save user when login to the systm, already saved in user when login to the system on backend (user.controller.js)
         navigate("/");
         toast.success(res.data.message);
       }
