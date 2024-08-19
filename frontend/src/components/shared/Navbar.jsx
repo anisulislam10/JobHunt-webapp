@@ -30,15 +30,15 @@ const Navbar = () => {
 
             <div className='flex gap-1 text-[#000000]'>
               <House />
-              <li>Home</li>
+              <li> <Link to="/">Home</Link> </li>
             </div>
             <div className='flex gap-1 text-[#000000]'>
             <NotebookPen />
-              <li>Jobs</li>
+              <li> <Link to="/Jobs">Jobs</Link></li>
             </div>
             <div className='flex gap-1 text-[#000000]'>
               <FolderSearch />
-              <li>Browse</li>
+              <li>  <Link to="/Browse">Browse</Link> </li>
             </div>
           </ul>
           {
