@@ -12,10 +12,13 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { LogOut, User2, House, ScanText, Layers2, FolderSearch,NotebookPen  } from 'lucide-react'
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 
 
 const Navbar = () => {
-  const user = false;
+  // const user = true;
+  const {user}=useSelector(store=>store.auth) //destructure user for hiding/unhiding when login
   return (
     // <div className='bg-gradient-to-r from-white to-blue-500 h-10'>
     <div className='bg-white-200'>
