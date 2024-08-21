@@ -3,7 +3,7 @@ import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 
 function JobDescription() {
-    const isApplied=true;
+    const isApplied=false;
   return (
     <div className='max-w-7xl mx-auto my-10'>
         <div className='flex items-center justify-between ml-20 mr-20'>
