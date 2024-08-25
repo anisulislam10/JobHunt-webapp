@@ -1,8 +1,8 @@
 import express from "express";
-// import { login, logout, register, updateProfile } from "../controllers/user.controller.js";
+import { login, logout, register, updateProfile } from "../controllers/user.controller.js";
 import isAuthenticated from "../middlewares/isAuthenticated.js";
 import { getAdminJobs, getAllJobs, getJobById, postJob } from "../controllers/job.controller.js";
-// import { singleUpload } from "../middlewares/mutler.js";
+import { singleUpload } from "../middlewares/mutler.js";
  console.log("job router");
  
 const router = express.Router();
