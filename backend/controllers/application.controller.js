@@ -1,65 +1,65 @@
-import {Application} from "../models/application.model.js"
+import { Application } from "../models/application.model.js";
 import { Job } from "../models/job.model.js";
-export const applyJob=async (req,res)=>{
+
+export const applyJob = async (req, res) => {
     try {
-        const userId=req.id;
-        // const {id:jobId}=req.params;
-        const jobId = req.params.id
-        if(!jobId){
+        const userId = req.id;
+        const jobId = req.params.id;
+        if (!jobId) {
             return res.status(400).json({
-                message: "job ID is required",
+                message: "Job id is required.",
                 success: false
             })
         };
-        //check if user has already applied or not for the job
-        const existingApplication= await Application.findOne({job:jobId, applicant:userId});
-        if(existingApplication){
+        // check if the user has already applied for the job
+        const existingApplication = await Application.findOne({ job: jobId, applicant: userId });
+
+        if (existingApplication) {
             return res.status(400).json({
-                message: "You have Already Applied for this job",
+                message: "You have already applied for this jobs",
                 success: false
-            })
+            });
         }
-        //check if the job exits or not
+
+        // check if the jobs exists
         const job = await Job.findById(jobId);
-        if(!Job){
+        if (!job) {
             return res.status(404).json({
-                message: "Job Not Found",
+                message: "Job not found",
                 success: false
             })
         }
-        //create a new application
-        const newApplication= await Application.create({
-          job: jobId,
-          applicant: userId
+        // create a new application
+        const newApplication = await Application.create({
+            job:jobId,
+            applicant:userId,
         });
+
         job.applications.push(newApplication._id);
         await job.save();
         return res.status(201).json({
-            message: "Job Applied Successfully",
-            success: true
+            message:"Job applied successfully.",
+            success:true
         })
     } catch (error) {
         console.log(error);
-        
     }
-}
-//get all applied jobs
-export const getAppliedJobs= async (req,res)=>{
+};
+export const getAppliedJobs = async (req,res) => {
     try {
-        const userId=req.id;
-        const application = await Application.find({applicant:userId}).sort({created:-1}).populate({
-            path: "job",
-            options: {sort: {createdAt: -1}},
-            //nested populate to show details both job and company information
+        const userId = req.id;
+        const application = await Application.find({applicant:userId}).sort({createdAt:-1}).populate({
+            path:'job',
+            options:{sort:{createdAt:-1}},
             populate:{
-                path: 'company',
-                options: {sort: {createdAt: -1}},
+                path:'company',
+                options:{sort:{createdAt:-1}},
             }
         });
         if(!application){
             return res.status(404).json({
-                message: "No Application",
-                success: false
+                message:"No Applications",
+                success:false
             })
         };
         return res.status(200).json({
@@ -68,64 +68,62 @@ export const getAppliedJobs= async (req,res)=>{
         })
     } catch (error) {
         console.log(error);
-        
     }
 }
-
-//finds applicants, admin check how many user, students are applied for the job
-export const getApplicants= async (req,res)=>{
+// admin dekhega kitna user ne apply kiya hai
+export const getApplicants = async (req,res) => {
     try {
         const jobId = req.params.id;
         const job = await Job.findById(jobId).populate({
             path:'applications',
-            options: {sort: {createdAt: -1}},
-            //nested populate
+            options:{sort:{createdAt:-1}},
             populate:{
-                path: 'applicant',
-                
+                path:'applicant'
             }
         });
         if(!job){
             return res.status(404).json({
-                message: "Job Not Found",
-                success: false
+                message:'Job not found.',
+                success:false
             })
         };
         return res.status(200).json({
-            job,
-            success: true
-        })
+            job, 
+            succees:true
+        });
     } catch (error) {
-        console.log(error);  
+        console.log(error);
     }
 }
-
-//update status like select, reject pending
-export const updateStatus= async (req,res)=>{
+export const updateStatus = async (req,res) => {
     try {
-        const {status}=req.body;
-        const applicationId=req.params.id;
+        const {status} = req.body;
+        const applicationId = req.params.id;
         if(!status){
-            return res.status(404).json({
-                message: "Status is Required",
-                success: false
+            return res.status(400).json({
+                message:'status is required',
+                success:false
             })
         };
-        //find the application by applicantion ID
+
+        // find the application by applicantion id
         const application = await Application.findOne({_id:applicationId});
-        if (!application){
+        if(!application){
             return res.status(404).json({
-                message: "Application Not Found",
-                success: false
+                message:"Application not found.",
+                success:false
             })
         };
-        //update the status
-        application.status=status.toLowerCase();
+
+        // update the status
+        application.status = status.toLowerCase();
         await application.save();
+
         return res.status(200).json({
-            message: "Status Updated Successfully",
-            success: true
-        })
+            message:"Status updated successfully.",
+            success:true
+        });
+
     } catch (error) {
         console.log(error);
     }
